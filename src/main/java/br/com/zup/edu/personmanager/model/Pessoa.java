@@ -38,6 +38,17 @@ public class Pessoa {
 	public LocalDate getDataNascimento() {
 		return dataNascimento;
 	}
-    
+
+	public String getNome() {
+		return nome;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public String getApelido() {
+		return apelido;
+	}
     
 }

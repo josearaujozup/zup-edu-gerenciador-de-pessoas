@@ -6,6 +6,7 @@ import java.time.Period;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,4 +43,14 @@ public class PessoaController {
 		return ResponseEntity.noContent().build();
 	}
 	
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<?> detalhar(@PathVariable("id") Long idPessoa){
+		
+		Pessoa pessoa = repository.findById(idPessoa).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Não existe cadastro de grupo para o id informado"));
+		
+		PessoaDTO dto = new PessoaDTO(pessoa);
+		
+		return ResponseEntity.ok(dto);
+	}
 }
